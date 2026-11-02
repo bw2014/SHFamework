@@ -115,11 +115,11 @@ namespace Framework.Legacy
 
         internal static void BeginInitialize()
         {
-            Acl = StartupLog.Time("GetRoles(Acl)", () => Permission.GetUserAccessControlList());
-            SchoolInformation = StartupLog.Time("GetSchoolInfo", () => new SchoolInformation());
-            SchoolConfig = StartupLog.Time("GetSchoolConfig", () => new SchoolConfig());
-            SystemConfig = StartupLog.Time("GetSystemConfig", () => new SystemConfig());
-            Configuration = StartupLog.Time("ConfigurationCollection", () => new ConfigurationCollection());
+            Acl = Permission.GetUserAccessControlList();
+            SchoolInformation = new SchoolInformation();
+            SchoolConfig = new SchoolConfig();
+            SystemConfig = new SystemConfig();
+            Configuration = new ConfigurationCollection();
         }
 
         internal static void EndInitialize()

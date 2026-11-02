@@ -17,25 +17,16 @@ namespace Framework
         //[Dependency("SeniorHSBase")]
         public static void Initial()
         {
-            System.Diagnostics.Stopwatch total = System.Diagnostics.Stopwatch.StartNew();
-            StartupLog.Cleanup();
-            StartupLog.Write("==== Framework.Initial begin", 0, null);
+            InitializeGlobalData();
 
-            StartupLog.Time("InitializeGlobalData", () => InitializeGlobalData());
-
-            StartupLog.Time("SetIconAndTitle", () =>
-            {
-                MotherForm.Form.Icon = Properties.Resources.ischoolIcon;
-                MotherForm.StartMenu.Image = Properties.Resources.Icon;
-                MotherForm.Form.Text = GetTitleText();
-            });
+            MotherForm.Form.Icon = Properties.Resources.ischoolIcon;
+            MotherForm.StartMenu.Image = Properties.Resources.Icon;
+            MotherForm.Form.Text = GetTitleText();
 
             FISCA.Authentication.DSAServices.AutoDisplayLoadingMessageOnMotherForm();
 
             MotherForm.StartMenu["安全性"]["使用者管理"].Click += new EventHandler(UserManage_Click);
             MotherForm.StartMenu["安全性"]["角色權限管理"].Click += new EventHandler(RoleManage_Click);
-
-            StartupLog.Write("==== Framework.Initial end (total)", total.ElapsedMilliseconds, null);
 
             //Student.Instance.ReflashAll();
             //Class.Instance.ReflashAll();
@@ -87,7 +78,7 @@ namespace Framework
             Framework.Legacy.GlobalOld.BeginInitialize();
 
             //設定  Preference。
-            IPreferenceProvider preference = StartupLog.Time("GetPreference", () => new PreferenceProvider());
+            IPreferenceProvider preference = new PreferenceProvider();
             MotherForm.PreferenceProvider = preference;
             Framework.Legacy.GlobalOld.Preference = preference;
 
