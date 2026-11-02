@@ -181,3 +181,9 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
+# Visual Studio
+.vs/
+
+# csproj Debug 預設輸出路徑產生的編譯產物
+FiscaRuntime/
