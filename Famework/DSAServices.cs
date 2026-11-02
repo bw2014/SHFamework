@@ -19,34 +19,40 @@ namespace Framework
 {
     public static class DSAServices
     {
+        private const string NotSupportedMessage =
+            "目前的 FISCA.Authentication 已不提供此方法，授權與登入由 FISCA 主程式負責。";
+
         /// <summary>
-        /// 授權登入系統
+        /// 授權登入系統（已不支援）。
         /// </summary>
         /// <param name="fileName">授權檔路徑</param>
-        /// <returns>授權是否成功</returns>
+        /// <exception cref="NotSupportedException">一律丟出。</exception>
+        [Obsolete(NotSupportedMessage)]
         public static void SetLicense(string fileName)
         {
-            FISCA.Authentication.DSAServices.SetLicense(fileName);
+            throw new NotSupportedException(NotSupportedMessage);
         }
         /// <summary>
-        /// 設定授權登入系統
+        /// 設定授權登入系統（已不支援）。
         /// </summary>
         /// <param name="stream">授權檔串流</param>
-        /// <returns>授權是否成功</returns>
+        /// <exception cref="NotSupportedException">一律丟出。</exception>
+        [Obsolete(NotSupportedMessage)]
         public static void SetLicense(Stream stream)
         {
-            FISCA.Authentication.DSAServices.SetLicense(stream);
+            throw new NotSupportedException(NotSupportedMessage);
         }
         /// <summary>
-        /// 登入使用者
+        /// 登入使用者（已不支援）。
+        /// 原本登入後會呼叫 <see cref="Setup"/>；若需初始化組態，請在登入完成後直接呼叫 <see cref="Setup"/>。
         /// </summary>
         /// <param name="account">帳號</param>
         /// <param name="password">密碼</param>
-        /// <returns>登入成功</returns>
+        /// <exception cref="NotSupportedException">一律丟出。</exception>
+        [Obsolete(NotSupportedMessage)]
         public static void Login(string account, string password)
         {
-            FISCA.Authentication.DSAServices.Login(account, password);
-            Setup();
+            throw new NotSupportedException(NotSupportedMessage);
         }
 
         public static void Setup()

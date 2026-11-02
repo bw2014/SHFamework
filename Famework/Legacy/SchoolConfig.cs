@@ -43,7 +43,9 @@ namespace Framework.Legacy
                 }
                 catch (Exception ex)
                 {
-                    BugReporter.ReportException(GlobalOld.SystemName, GlobalOld.SystemVersion, ex, false, string.Empty);
+                    StartupLog.Write("GetSchoolConfig attempt " + (i + 1), 0, ex);
+                    StartupLog.Time("BugReporter(SchoolConfig)", () =>
+                        BugReporter.ReportException(GlobalOld.SystemName, GlobalOld.SystemVersion, ex, false, string.Empty));
                 }
             }
         }
